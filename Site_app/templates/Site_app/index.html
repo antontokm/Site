@@ -1,5 +1,9 @@
 {% extends "Site_app/base.html" %}
 
 {% block content %}
-<p>sosi jopu suka</p>
+<ul>
+    {% for driver in drivers %}
+        <li>{{ driver }}</li>
+    {% endfor %}
+</ul>
 {% endblock content %}
