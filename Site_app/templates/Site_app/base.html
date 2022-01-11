@@ -1,7 +1,8 @@
 <p>
-    <a href="{% url 'Site_app:index'}">Главная страница</a>
+    <a href="{% url 'Site_app:index' %}">Главная страница</a>
     {% if user.is_authenticated %}
         Hello, {{ user.username }}.
+        <a href="{% url 'users:logout' %}">log out</a>
     {% else %}
         <a href="{% url 'users:login' %}">log in</a>
     {% endif %}

@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
     {% for driver in drivers %}
-        <li>{{ driver }}</li>
+        <li>{{ driver }}  {{driver.score}}</li>
     {% endfor %}
 </ul>
 {% endblock content %}
