@@ -1,0 +1,18 @@
+{% extends "Site_app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <ul>
+        {% for forum in forums %}
+            <li>{{ forum.text }}  {{forum.date_added}} {{forum.user_name}}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'Site_app:forum' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Send</button>
+    </form> 
+{% else %}
+    <p>Зарегистрирютесь или войдите в аккаунт, чтобы участвовать в форуме.</p>
+{% endif %}    
+{% endblock content %}
