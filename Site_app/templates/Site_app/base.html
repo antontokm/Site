@@ -1,12 +1,22 @@
-<p>
-    <a href="{% url 'Site_app:index' %}">Главная страница</a>
-    <a href="{% url 'Site_app:forum' %}">Форум</a>
-    {% if user.is_authenticated %}
-        Hello, {{ user.username }}.
-        <a href="{% url 'users:logout' %}">log out</a>
-    {% else %}
-        <a href="{% url 'users:register' %}">Register</a>
-        <a href="{% url 'users:login' %}">log in</a>
-    {% endif %}
-</p>
-{% block content %}{% endblock content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css\styles.css'%}">
+</head>
+<body>
+    <div class="header">
+        <div class="header_menu">
+            <div><a href="{% url 'Site_app:index' %}">Главная страница</a></div>
+            <div class="header_menu_forum"><a href="{% url 'Site_app:forum' %}">Форум</a></div>
+        </div>  
+        <div class="header_usermenu">  
+            {% if user.is_authenticated %}
+                <div>Hello, {{ user.username }}.</div>
+                <div class="header_usermenu_logout"><a href="{% url 'users:logout' %}">log out</a></div>
+            {% else %}
+                <div class="header_usermenu_register"><a href="{% url 'users:register' %}">Register</a></div>
+                <div class="header_usermenu_login"><a href="{% url 'users:login' %}">log in</a></div>
+            {% endif %}
+        </div>    
+    </div>
+    {% block content %}{% endblock content %}
+</body>

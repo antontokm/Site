@@ -1,16 +1,20 @@
 {% extends "Site_app/base.html" %}
 
 {% block content %}
+    {% for forum in forums %}
+        <div class="forum_block">
+            <div class="forum_block_inf">
+                <div>{{forum.user_name}}</div>
+                <div>{{forum.date_added}}</div>
+            </div>
+            <div class="forum_block_text">{{ forum.text }}</div> 
+        </div>
+    {% endfor %}
 {% if user.is_authenticated %}
-    <ul>
-        {% for forum in forums %}
-            <li>{{ forum.text }}  {{forum.date_added}} {{forum.user_name}}</li>
-        {% endfor %}
-    </ul>
-    <form method="post" action="{% url 'Site_app:forum' %}">
+    <form method="post" action="{% url 'Site_app:forum' %}" class="forum_form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Send</button>
+        <div><button name="submit">Send</button></div>
     </form> 
 {% else %}
     <p>Зарегистрирютесь или войдите в аккаунт, чтобы участвовать в форуме.</p>

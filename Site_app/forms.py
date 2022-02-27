@@ -10,4 +10,4 @@ class ForumForm(forms.ModelForm):
     class Meta:
         model = Forum
         fields = ['text' ]
-        labels = {'text': 'text' }
+        labels = {'text': '' }

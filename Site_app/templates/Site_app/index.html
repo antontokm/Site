@@ -1,9 +1,15 @@
 {% extends "Site_app/base.html" %}
-
 {% block content %}
-<ul>
+<div class="main">
+    <div class="main_row">
+        <div class="main_row_driver">Driver</div> 
+        <div class="main_row_score">Points</div>
+    </div>
     {% for driver in drivers %}
-        <li>{{ driver }}  {{driver.score}}</li>
+        <div class="main_row">
+            <div class="main_row_driver">{{ driver }}</div> 
+            <div class="main_row_score">{{driver.score}}</div>
+        </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock content %}

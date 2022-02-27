@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Driver, Forum
 from .forms import ForumForm
-from django.contrib.auth.models import User
+from .api_request import add_drivers
 
 def index(request):
+    add_drivers()
     drivers = Driver.objects.order_by('-score')
     context = {'drivers': drivers}
     return render(request, 'Site_app/index.html', context)
