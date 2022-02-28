@@ -19,20 +19,21 @@ def driver_login():
     log_in(web_driver)
     return web_driver
 
-def test_log_in(driver_login):
-    elem_username = driver_login.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]")
-    assert elem_username.text == "Hello, Test1."
+def test_log_in(driver):
+    log_in(driver)
+    elem_username = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]")
+    assert elem_username.text == "Hello, User_Test1."
 
 @pytest.mark.xfail
 def test_registration(driver):
-    i=2
+    i=1
     driver.get('http://127.0.0.1:8000/')
 
     elem_register = driver.find_element(By.CLASS_NAME,"header_usermenu_register")
     elem_register.click()
 
     elem_field_username = driver.find_element(By.NAME,"username")
-    elem_field_username.send_keys(f"Test{i}")
+    elem_field_username.send_keys(f"User_Test{i}")
 
     elem_field_password = driver.find_element(By.NAME,"password1")
     elem_field_password.send_keys("1qaz@WSX3edc$RFV")
@@ -44,7 +45,7 @@ def test_registration(driver):
     elem_button_submit.click()
 
     elem_username = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]")
-    assert elem_username.text == f"Hello, Test{i}."
+    assert elem_username.text == f"Hello, User_Test{i}."
 
 
 def test_log_out(driver_login):
@@ -75,7 +76,7 @@ def log_in(driver):
     elem_login.click()
 
     elem_field_username = driver.find_element(By.NAME,"username")
-    elem_field_username.send_keys("Test1")
+    elem_field_username.send_keys("User_Test1")
 
     elem_field_password = driver.find_element(By.NAME,"password")
     elem_field_password.send_keys("1qaz@WSX3edc$RFV")
