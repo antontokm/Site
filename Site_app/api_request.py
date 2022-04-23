@@ -2,7 +2,7 @@ import requests
 from .models import Driver
 
 def add_drivers():
-    url = "http://ergast.com/api/f1/2021/driverStandings.json"
+    url = "http://ergast.com/api/f1/2022/driverStandings.json"
     headers = {}
     r = requests.get(url, headers=headers)
     response_dict = r.json()
