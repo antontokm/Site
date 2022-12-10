@@ -10,6 +10,12 @@
         </div>  
         <div class="header_usermenu">  
             {% if user.is_authenticated %}
+                {% if user.username == 'admin' %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div><input type="submit" value="Обновить" name="updateTable"/></div>
+                    </form>
+                {% endif %}
                 <div>Hello, {{ user.username }}.</div>
                 <div class="header_usermenu_logout"><a href="{% url 'users:logout' %}">log out</a></div>
             {% else %}
