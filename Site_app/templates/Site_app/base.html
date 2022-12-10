@@ -10,6 +10,9 @@
         </div>  
         <div class="header_usermenu">  
             {% if user.is_authenticated %}
+                {% if user.username == 'admin' %}
+                    <div><button>Обновить</button></div>
+                {% endif %}
                 <div>Hello, {{ user.username }}.</div>
                 <div class="header_usermenu_logout"><a href="{% url 'users:logout' %}">log out</a></div>
             {% else %}

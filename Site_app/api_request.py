@@ -16,5 +16,5 @@ def add_drivers():
             driver.last_name = driverIndex["Driver"]['familyName']
             driver.score = float(driverIndex['points'])
             driver.save()
-            print('test')
+            print('test2')
 
