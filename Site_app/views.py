@@ -4,9 +4,21 @@ from .forms import ForumForm
 from .api_request import add_drivers
 
 def index(request):
-    if request.POST.get('updateTable'):
-        add_drivers()   
-    drivers = Driver.objects.order_by('-score')
+    if request.POST.get('tableUpdate2021'):
+        year = "2021"
+        add_drivers(year)
+    if request.POST.get('tableUpdate2022'):
+        year = "2022"
+        add_drivers(year)
+    if request.POST.get('table2022'):
+        drivers = Driver.objects.filter(year = '2022').order_by('-score')
+        context = {'drivers': drivers}
+        return render(request, 'Site_app/index.html', context)
+    if request.POST.get('table2021'):
+        drivers = Driver.objects.filter(year = '2021').order_by('-score')
+        context = {'drivers': drivers}
+        return render(request, 'Site_app/index.html', context)
+    drivers = Driver.objects.filter(year = '2022').order_by('-score')
     context = {'drivers': drivers}
     return render(request, 'Site_app/index.html', context)
 

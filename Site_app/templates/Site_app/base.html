@@ -13,7 +13,11 @@
                 {% if user.username == 'admin' %}
                     <form method="POST">
                         {% csrf_token %}
-                        <div><input type="submit" value="Обновить" name="updateTable"/></div>
+                        <div><input type="submit" value="2021" name="tableUpdate2021"/></div>
+                    </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div><input type="submit" value="2022" name="tableUpdate2022"/></div>
                     </form>
                 {% endif %}
                 <div>Hello, {{ user.username }}.</div>
