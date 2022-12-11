@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
 }
+    form{
+        margin-bottom: 0px;
+    }
     .header a{
         text-decoration: none;
     }
@@ -15,11 +18,25 @@
     .header_menu div:hover, .header_usermenu div:hover{
         background-color: #f8f8f8;
     }
-
+.years{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+    .years_chapter{
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffffff;
+    }
+    .years_chapter:hover{
+        background-color: #f8f8f8;
+        cursor: pointer;
+    }
 .main_row{
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     border-top:1px solid black ;
 }
 .main_row:hover{

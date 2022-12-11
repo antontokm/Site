@@ -1,5 +1,15 @@
 {% extends "Site_app/base.html" %}
 {% block content %}
+<div class="years">
+    <form method="POST">
+        {% csrf_token %}
+        <div><input type="submit" value="2021" name="table2021" class="years_chapter"/></div>
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        <div><input type="submit" value="2022" name="table2022" class="years_chapter"/></div>
+    </form>
+</div>
 <div class="main">
     <div class="main_row">
         <div class="main_row_driver">Driver</div> 
