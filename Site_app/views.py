@@ -33,6 +33,5 @@ def forum(request):
             f.user_name = request.user
             f.save()
             return redirect('Site_app:forum')
-    
     context = {'form': form, 'forums': forums}
     return render(request, 'Site_app/forum.html', context)
