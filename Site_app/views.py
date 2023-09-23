@@ -10,6 +10,9 @@ def index(request):
     if request.POST.get('tableUpdate2022'):
         year = "2022"
         add_drivers(year)
+    if request.POST.get('tableUpdate2023'):
+        year = "2023"
+        add_drivers(year)
     if request.POST.get('table2022'):
         drivers = Driver.objects.filter(year = '2022').order_by('-score')
         context = {'drivers': drivers}
@@ -18,7 +21,11 @@ def index(request):
         drivers = Driver.objects.filter(year = '2021').order_by('-score')
         context = {'drivers': drivers}
         return render(request, 'Site_app/index.html', context)
-    drivers = Driver.objects.filter(year = '2022').order_by('-score')
+    if request.POST.get('table2023'):
+        drivers = Driver.objects.filter(year = '2023').order_by('-score')
+        context = {'drivers': drivers}
+        return render(request, 'Site_app/index.html', context)
+    drivers = Driver.objects.filter(year = '2023').order_by('-score')
     context = {'drivers': drivers}
     return render(request, 'Site_app/index.html', context)
 
