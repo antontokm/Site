@@ -10,5 +10,5 @@ RUN git clone https://github.com/antontokm/Site.git
 # RUN . ./Site/env/bin/activate
 RUN pip install -r Site/requirements.txt
 WORKDIR Site
-RUN python3 manage.py collectstatic --noinput
+# RUN python3 manage.py collectstatic --noinput
 CMD gunicorn -b 0.0.0.0:8000 Site.wsgi:application 
