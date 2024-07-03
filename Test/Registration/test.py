@@ -5,16 +5,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.common.keys import Keys
 import pytest
+import elems
+import random
 
 @pytest.fixture
 def driver():
-    s = Service('./Test/chromedriver')
+    s = Service('./Test/chromedriver.exe')
     web_driver = webdriver.Chrome(service = s)
     return web_driver
 
 @pytest.fixture
 def driver_login():
-    s = Service('./Test/chromedriver')
+    s = Service('./Test/chromedriver.exe')
     web_driver = webdriver.Chrome(service = s)
     log_in(web_driver)
     return web_driver
@@ -26,7 +28,7 @@ def test_log_in(driver):
 
 @pytest.mark.xfail
 def test_registration(driver):
-    i=1
+    i=random.random()
     driver.get('http://127.0.0.1:8000/')
 
     elem_register = driver.find_element(By.CLASS_NAME,"header_usermenu_register")
