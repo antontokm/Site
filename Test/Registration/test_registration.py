@@ -1,6 +1,13 @@
+import os
+import sys
+sys.path.append("D:\\Python\\Site")
+os.environ["DJANGO_SETTINGS_MODULE"] = "Site.settings"
+import django
+django.setup()
+
 from elems import PageBase, PageRegistration
 import random
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 
 
@@ -18,7 +25,7 @@ def test_smoke_registration(driver):
     page_registaration.click_button_submit(driver)
 
     assert page_registaration.return_username(driver).text == f"Hello, User_Test{i}."
-#    print(User.objects.filter(username=f"User_Test{i}"))
+    User.objects.filter(username=f"User_Test{i}").delete()
 
 def test_negativ_password_length(driver):
     i=random.random()
