@@ -1,0 +1,6 @@
+Создать образ из докер файла 
+docker build --no-cache -t mysite:v16 .
+Запустить контейнер из образа
+docker run -it -p 8000:8000 --name mysite-contener mysite:v16
+Если контейнер не запущен то:
+docker start mysite-contener
