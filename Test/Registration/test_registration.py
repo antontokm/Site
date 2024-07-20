@@ -1,12 +1,15 @@
 import os
 import sys
-sys.path.append("D:\\Python\\Site")
+# sys.path.append("D:\\Python\\Site")
+sys.path.append(os.path.join(os.getcwd(), ""))
+print(sys.path)
 os.environ["DJANGO_SETTINGS_MODULE"] = "Site.settings"
 import django
 django.setup()
 import pytest
 
-from elems import PageBase, PageRegistration
+from page_objects.page_registration import PageRegistration
+from page_objects.page_base import PageBase
 import random
 from django.contrib.auth.models import User
 
