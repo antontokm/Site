@@ -9,20 +9,20 @@ class PageBase():
         self.registration.click()
     
     def click_log(self, driver):
-        self.registration = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[2]")
-        self.registration.click()
+        self.log = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[2]")
+        self.log.click()
     
     def click_main_page(self, driver):
-        self.registration = driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div[1]/a")
-        self.registration.click()
+        self.main_page = driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div[1]/a")
+        self.main_page.click()
     
     def click_forum(self, driver):
-        self.registration = driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div[2]/a")
-        self.registration.click()
+        self.forum = driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div[2]/a")
+        self.forum.click()
     
     def return_username(self, driver):
-        self.registration = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]")
-        return self.registration
+        self.username = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div[1]")
+        return self.username
 
 
 class PageRegistration(PageBase):
