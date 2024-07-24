@@ -1,0 +1,4 @@
+Полсе теста сгенерить результат:
+allure serve allure-results 
+Для формирования одиночного html файла с результатами тестов:
+allure generate --single-file allure-results
