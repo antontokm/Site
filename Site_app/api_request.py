@@ -16,5 +16,3 @@ def add_drivers(year):
         driver.score = float(list_driver_info[i]['points'])
         driver.year = list_season["season"]
         driver.save()
-        # print('test2')
-

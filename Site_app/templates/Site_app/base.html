@@ -23,6 +23,10 @@
                         {% csrf_token %}
                         <div><input type="submit" value="2023" name="tableUpdate2023"/></div>
                     </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div><input type="submit" value="2024" name="tableUpdate2024"/></div>
+                    </form>
                 {% endif %}
                 <div>Hello, {{ user.username }}.</div>
                 <div class="header_usermenu_logout"><a href="{% url 'users:logout' %}">log out</a></div>
