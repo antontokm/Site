@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Driver, Forum
 from .forms import ForumForm
 from .api_request import add_drivers
+# from .get_info_drivers_standing import add_drivers
 
 def index(request):
     if request.POST.get('tableUpdate2021'):
@@ -13,19 +14,26 @@ def index(request):
     if request.POST.get('tableUpdate2023'):
         year = "2023"
         add_drivers(year)
-    if request.POST.get('table2022'):
-        drivers = Driver.objects.filter(year = '2022').order_by('-score')
-        context = {'drivers': drivers}
-        return render(request, 'Site_app/index.html', context)
+    if request.POST.get('tableUpdate2024'):
+        year = "2024"
+        add_drivers(year)
     if request.POST.get('table2021'):
         drivers = Driver.objects.filter(year = '2021').order_by('-score')
+        context = {'drivers': drivers}
+        return render(request, 'Site_app/index.html', context)
+    if request.POST.get('table2022'):
+        drivers = Driver.objects.filter(year = '2022').order_by('-score')
         context = {'drivers': drivers}
         return render(request, 'Site_app/index.html', context)
     if request.POST.get('table2023'):
         drivers = Driver.objects.filter(year = '2023').order_by('-score')
         context = {'drivers': drivers}
         return render(request, 'Site_app/index.html', context)
-    drivers = Driver.objects.filter(year = '2023').order_by('-score')
+    if request.POST.get('table2024'):
+        drivers = Driver.objects.filter(year = '2024').order_by('-score')
+        context = {'drivers': drivers}
+        return render(request, 'Site_app/index.html', context)
+    drivers = Driver.objects.filter(year = '2024').order_by('-score')
     context = {'drivers': drivers}
     return render(request, 'Site_app/index.html', context)
 
