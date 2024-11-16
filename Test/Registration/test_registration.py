@@ -1,5 +1,7 @@
 import os
 import sys
+
+from selenium.webdriver.chrome.webdriver import WebDriver
 sys.path.append(os.path.join(os.getcwd(), ""))
 os.environ["DJANGO_SETTINGS_MODULE"] = "Site.settings"
 import django
@@ -13,7 +15,7 @@ from django.contrib.auth.models import User
 
 
 @pytest.mark.smoke
-def test_successful_registration(driver, get_site):
+def test_successful_registration(driver: WebDriver, get_site: None):
     i=random.random()
 
     page_base = PageBase(driver)
@@ -29,7 +31,7 @@ def test_successful_registration(driver, get_site):
     User.objects.filter(username=f"User_Test{i}").delete()
 
 @pytest.mark.regression
-def test_negativ_password_length_short(driver, get_site):
+def test_negativ_password_length_short(driver: WebDriver, get_site: None):
     i=random.random()
 
     page_base = PageBase(driver)
@@ -44,7 +46,7 @@ def test_negativ_password_length_short(driver, get_site):
     assert page_registaration.return_text_description(driver).text == "This password is too short. It must contain at least 8 characters."
 
 @pytest.mark.regression
-def test_negativ_password_commonly(driver, get_site):
+def test_negativ_password_commonly(driver: WebDriver, get_site: None):
     i=random.random()
 
     page_base = PageBase(driver)
@@ -59,7 +61,7 @@ def test_negativ_password_commonly(driver, get_site):
     assert page_registaration.return_text_description(driver).text == "This password is too common."
 
 @pytest.mark.regression
-def test_negativ_passwords_different(driver, get_site):
+def test_negativ_passwords_different(driver: WebDriver, get_site: None):
     i=random.random()
 
     page_base = PageBase(driver)
@@ -74,7 +76,7 @@ def test_negativ_passwords_different(driver, get_site):
     assert page_registaration.return_text_description(driver).text == "The two password fields didn’t match."
 
 @pytest.mark.regression
-def test_negativ_password_similar_username(driver, get_site):
+def test_negativ_password_similar_username(driver: WebDriver):
     page_base = PageBase(driver)
     page_base.click_registration(driver)
 
@@ -87,7 +89,7 @@ def test_negativ_password_similar_username(driver, get_site):
     assert page_registaration.return_text_description(driver).text == "The password is too similar to the username."
 
 @pytest.mark.regression
-def test_negativ_password_only_numeric(driver, get_site):
+def test_negativ_password_only_numeric(driver: WebDriver, get_site: None):
     i=random.random()
 
     page_base = PageBase(driver)
