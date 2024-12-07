@@ -5,3 +5,5 @@ env
 __pycache__
 chromedriver.exe
 allure*
+.vscode
+db.sqlite3
