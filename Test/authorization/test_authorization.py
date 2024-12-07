@@ -2,11 +2,13 @@ import pytest
 
 from page_objects.page_base import PageBase
 from page_objects.page_authorization import PageAuthorization
+import allure
 
 
 @pytest.mark.smoke
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
-def test_successful_authorization1(driver, get_site, create_and_delete_user):
+@allure.title("Проверка успешной авторизации")
+def test_successful_authorization(driver, get_site, create_and_delete_user):
     page_base = PageBase(driver)
     page_base.click_log(driver)
 

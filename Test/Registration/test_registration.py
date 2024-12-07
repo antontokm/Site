@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 
 
 @pytest.mark.smoke
+@allure.title("Проверка успешной регистрации")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_successful_registration(driver: WebDriver, get_site: None):
     i=random.random()
@@ -39,6 +40,7 @@ def test_successful_registration(driver: WebDriver, get_site: None):
     User.objects.filter(username=f"User_Test{i}").delete()
 
 @pytest.mark.regression
+@allure.title("Проверка регистрации с коротким паролем")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_negativ_password_length_short(driver: WebDriver, get_site: None):
     i=random.random()
@@ -55,6 +57,7 @@ def test_negativ_password_length_short(driver: WebDriver, get_site: None):
     assert page_registaration.return_text_description(driver).text == "This password is too short. It must contain at least 8 characters."
 
 @pytest.mark.regression
+@allure.title("Проверка регистрации с обычным паролем")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_negativ_password_commonly(driver: WebDriver, get_site: None):
     i=random.random()
@@ -71,6 +74,7 @@ def test_negativ_password_commonly(driver: WebDriver, get_site: None):
     assert page_registaration.return_text_description(driver).text == "This password is too common."
 
 @pytest.mark.regression
+@allure.title("Проверка регистрации с несовпадаюшими паролями")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_negativ_passwords_different(driver: WebDriver, get_site: None):
     i=random.random()
@@ -87,6 +91,7 @@ def test_negativ_passwords_different(driver: WebDriver, get_site: None):
     assert page_registaration.return_text_description(driver).text == "The two password fields didn’t match."
 
 @pytest.mark.regression
+@allure.title("Проверка регистрации с паролем содержищм данные из логина")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_negativ_password_similar_username(driver: WebDriver, get_site):
     page_base = PageBase(driver)
@@ -101,6 +106,7 @@ def test_negativ_password_similar_username(driver: WebDriver, get_site):
     assert page_registaration.return_text_description(driver).text == "The password is too similar to the username."
 
 @pytest.mark.regression
+@allure.title("Проверка регистрации с паролем содержищм только числа")
 @pytest.mark.parametrize("driver", ["Chrome"], indirect=True)
 def test_negativ_password_only_numeric(driver: WebDriver, get_site: None):
     i=random.random()
