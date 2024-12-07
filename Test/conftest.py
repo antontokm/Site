@@ -8,18 +8,41 @@ django.setup()
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
+
 import pytest
 
-from page_objects.page_registration import PageRegistration
-from page_objects.page_base import PageBase
 from django.contrib.auth.models import User
 
-options = webdriver.ChromeOptions()
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options_chrome = webdriver.ChromeOptions()
+options_chrome.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+# options_firefox = webdriver.FirefoxOptions()
+# options_firefox.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+
+@pytest.fixture(params=["Chrome", "Firefox"])
+def driver(request):
+    if request.param == "Chrome":
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    if request.param == "Firefox":
+        driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    yield driver
+    driver.quit()
+    
+@pytest.fixture
+def chrome():
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver.get('http://127.0.0.1:8000/')
+    yield driver
+    driver.quit()
 
 @pytest.fixture
-def driver():
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+def firefox():
+    driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    driver.get('http://127.0.0.1:8000/')
     yield driver
     driver.quit()
 
